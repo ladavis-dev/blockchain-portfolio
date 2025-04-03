@@ -40,11 +40,11 @@ Each project folder follows a consistent structure for clarity and scalability:
 
 
 /project-name 
-│── contracts/ # Solidity smart contracts 
-│── scripts/ # Deployment & automation scripts 
-│── tests/ # Unit tests (Hardhat/Truffle) 
-│── deployments/ # Contract addresses & deployments 
-│── README.md # Project documentation
+- │── contracts/ # Solidity smart contracts 
+- │── scripts/ # Deployment & automation scripts 
+- │── tests/ # Unit tests (Hardhat/Truffle) 
+- │── deployments/ # Contract addresses & deployments 
+- │── README.md # Project documentation
 
 
 
