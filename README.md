@@ -1,46 +1,82 @@
-# Blockchain Developer Portfolio 🚀
+# 🧱 Blockchain Developer Portfolio
 
-Welcome to my **Blockchain Developer Portfolio**, where I upload new projects every week to demonstrate my skills in smart contract development, DeFi, NFTs, and Web3 applications.
+Welcome to my **Blockchain Developer Portfolio**, where I showcase weekly projects in **Smart Contracts**, **DeFi**, **NFTs**, and **Web3 DApps**. Each project is designed to highlight my progress, creativity, and deepening expertise in the blockchain space. 🚀
 
-## 🔥 Skills Covered
-- Solidity Smart Contracts (ERC20, ERC721, ERC1155)
-- DeFi Lending & Staking Protocols
-- NFT Marketplaces
-- Decentralized Exchanges (DEX)
-- Web3.js & Ethers.js Integration
-- DAO Governance
+---
 
-## 📌 Project Schedule
-I commit to adding new projects weekly, following this schedule:
+## 🧠 Skills & Technologies
 
-| Week | Project |
-|------|---------|
-| 01   | Solidity Basics & Token Contracts |
-| 02   | NFT Marketplace Smart Contracts |
-| 03   | DeFi Lending Protocol |
-| 04   | Decentralized Exchange (DEX) |
-| 05   | DAO Governance System |
-| 06   | Web3 Integration with Frontend |
-| ...  | ... More Projects ... |
+- 🔐 **Solidity** (ERC20, ERC721, ERC1155)
+- 🌉 **Web3 Integration** – Web3.js / Ethers.js
+- 💸 **DeFi Protocols** – Lending, Staking, Yield Farming
+- 🎨 **NFT DApps** – Marketplaces & Auctions
+- 🧬 **DAO Governance** – Voting & Treasury Systems
+- 🔄 **DEX Development** – Orderbook & Swap Interfaces
+- ☁️ **IPFS/Filecoin** – Decentralized Storage
+- 🔗 **Chainlink Oracles** – Real-World Data Integration
 
-## 📂 Project Structure
-Each project follows this structure:
+---
 
-/project-name │── contracts/ # Solidity smart contracts │── scripts/ # Deployment & automation scripts │── tests/ # Unit tests (Hardhat/Truffle) │── deployments/ # Contract addresses & deployments │── README.md # Project documentation
+## 📆 Weekly Project Schedule
+
+I commit to uploading **1 new blockchain project every week**.
+
+| Week | 🔨 Project Topic                        |
+|------|----------------------------------------|
+| 01   | Solidity Basics & Token Contracts      |
+| 02   | NFT Marketplace Smart Contracts        |
+| 03   | DeFi Lending Protocol                  |
+| 04   | Decentralized Exchange (DEX)           |
+| 05   | DAO Governance System                  |
+| 06   | Web3 + Frontend Integration            |
+| ...  | 📈 More Projects Coming Soon...        |
+
+---
+
+## 📁 Project Structure
+
+Each project folder follows a consistent structure for clarity and scalability:
 
 
-## 🛠️ Tools & Frameworks
-- **Solidity**
-- **Remix IDE**
-- **Hardhat / Truffle**
-- **OpenZeppelin**
-- **Ethers.js / Web3.js**
-- **IPFS & Filecoin**
-- **Chainlink Oracles**
 
-## 📢 Contact Me
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourname)
-- GitHub: [@yourusername](https://github.com/yourusername)
+/project-name │── contracts/ 
+# Solidity smart contracts │── scripts/ 
+# Deployment & automation scripts │── tests/ 
+# Unit tests (Hardhat/Truffle) │── deployments/ 
+# Contract addresses & deployments │── README.md 
+# Project documentation
+
+
+
+---
+
+## ⚙️ Tools & Frameworks
+
+| Tool         | Purpose                           |
+|--------------|------------------------------------|
+| 🔧 **Hardhat** / **Truffle** | Smart contract development & testing |
+| 🔒 **OpenZeppelin**         | Secure contract standards (ERCs)     |
+| 🌐 **Remix IDE**            | Lightweight in-browser development   |
+| 🔗 **Chainlink**            | Oracles for external data            |
+| 📡 **IPFS / Filecoin**      | Decentralized file storage           |
+
+---
+
+## 📝 Weekly Progress
+
+Track my learning journey through weekly logs in [`docs/weekly-progress.md`](docs/weekly-progress.md).
+
+---
+
+## 📬 Connect with Me
+
+- 🐦 **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
+- 💼 **LinkedIn**: [Your Name](https://linkedin.com/in/yourname)
+- 💻 **GitHub**: [@yourusername](https://github.com/yourusername)
+
+---
+
+> 🚧 **Work in Progress** — This portfolio will grow every week. Stay tuned and follow the journey!
+
 
 
