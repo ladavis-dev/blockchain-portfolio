@@ -26,3 +26,21 @@ I commit to adding new projects weekly, following this schedule:
 ## 📂 Project Structure
 Each project follows this structure:
 
+/project-name │── contracts/ # Solidity smart contracts │── scripts/ # Deployment & automation scripts │── tests/ # Unit tests (Hardhat/Truffle) │── deployments/ # Contract addresses & deployments │── README.md # Project documentation
+
+
+## 🛠️ Tools & Frameworks
+- **Solidity**
+- **Remix IDE**
+- **Hardhat / Truffle**
+- **OpenZeppelin**
+- **Ethers.js / Web3.js**
+- **IPFS & Filecoin**
+- **Chainlink Oracles**
+
+## 📢 Contact Me
+- Twitter: [@yourhandle](https://twitter.com/yourhandle)
+- LinkedIn: [Your Name](https://linkedin.com/in/yourname)
+- GitHub: [@yourusername](https://github.com/yourusername)
+
+
