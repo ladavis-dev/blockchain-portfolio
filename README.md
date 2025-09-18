@@ -78,39 +78,7 @@ Here’s how I’m aligning my development portfolio with security-focused skill
 | **Focus**              | Functionality and feature delivery | Security, correctness, exploit resistance               |
 | **Standards**          | Uses OpenZeppelin, ERC standards   | Evaluates deviations from standards for weaknesses      |
 
----
 
-## 🧭 6-Month Roadmap
-
-### 📅 **Month 1: Security Foundations**
-- Study **Ethereum Yellow Paper** (EVM basics)
-- Review common vulnerabilities: Reentrancy, Overflows, Front-running
-- Play **Ethernaut** and audit 5 known vulnerable contracts
-
-### 📅 **Month 2: Secure Solidity**
-- Apply secure coding patterns (Checks-Effects-Interactions, Pull over Push)
-- Use **Slither** & **MythX** for static analysis
-- Refactor 3 portfolio projects with security-first design
-
-### 📅 **Month 3: Offensive Security Tools**
-- Complete **Damn Vulnerable DeFi**
-- Learn fuzz/invariant testing with **Echidna** and **Foundry**
-- Write exploit tests for simple DeFi contracts
-
-### 📅 **Month 4: Audit Simulations**
-- Clone and audit open-source protocols (Uniswap, Compound)
-- Write reports (Overview, Issues Found, Recommendations)
-- Publish audits in `/audits` folder
-
-### 📅 **Month 5: Layer 1 & Layer 2 Security**
-- Study consensus attacks & rollup vulnerabilities
-- Analyze bridge exploits (e.g., Wormhole)
-- Threat-model a Layer 2 system
-
-### 📅 **Month 6: Branding & Career Launch**
-- Polish GitHub portfolio with audits + secure contracts
-- Publish blog posts on audit findings
-- Apply to roles: **Smart Contract Auditor**, **Security Engineer**, **Protocol Security Researcher**
 
 ---
 
