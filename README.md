@@ -1,6 +1,6 @@
 # 🧱 Blockchain Developer & Security Engineer Portfolio
 
-Hi, I’m a Sr.Cyber Security Engineer **transitioning into blockchain security engineering**.  
+Hi, I’m a Senior Cyber Security Engineer **transitioning into blockchain security engineering**.  
 This portfolio documents my **weekly projects**, **skills growth**, and **security-focused case studies** as I build expertise in smart contracts, DeFi, NFTs, Web3 protocols, and smart contract auditing. 🚀
 
 ---
