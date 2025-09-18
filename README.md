@@ -1,6 +1,7 @@
-# 🧱 Blockchain Developer Portfolio
+# 🧱 Blockchain Developer & Security Engineer Portfolio
 
-Welcome to my **Blockchain Developer Portfolio**, where I showcase weekly projects in **Smart Contracts**, **DeFi**, **NFTs**, and **Web3 DApps**. Each project is designed to highlight my progress, creativity, and deepening expertise in the blockchain space. 🚀
+Hi, I’m **L.A. Davis** — a blockchain developer **transitioning into blockchain security engineering**.  
+This portfolio documents my **weekly projects**, **skills growth**, and **security-focused case studies** as I build expertise in smart contracts, DeFi, NFTs, Web3 protocols, and smart contract auditing. 🚀
 
 ---
 
@@ -14,6 +15,7 @@ Welcome to my **Blockchain Developer Portfolio**, where I showcase weekly projec
 - 🔄 **DEX Development** – Orderbook & Swap Interfaces
 - ☁️ **IPFS/Filecoin** – Decentralized Storage
 - 🔗 **Chainlink Oracles** – Real-World Data Integration
+- 🛡️ **Security Focus** – Slither, MythX, Echidna, Foundry, Audit Reporting
 
 ---
 
@@ -21,62 +23,19 @@ Welcome to my **Blockchain Developer Portfolio**, where I showcase weekly projec
 
 I commit to uploading **1 new blockchain project every week**.
 
-| Week | 🔨 Project Topic                        |
-|------|----------------------------------------|
-| 01   | Solidity Basics & Token Contracts      |
-| 02   | NFT Marketplace Smart Contracts        |
-| 03   | DeFi Lending Protocol                  |
-| 04   | Decentralized Exchange (DEX)           |
-| 05   | DAO Governance System                  |
-| 06   | Web3 + Frontend Integration            |
-| ...  | 📈 More Projects Coming Soon...        |
+| Week | 🔨 Project Topic                  | Repo Link |
+|------|-----------------------------------|-----------|
+| 01   | Solidity Basics & Token Contracts | [View Code](./projects/week01-solidity-token) |
+| 02   | NFT Marketplace Smart Contracts   | Coming soon |
+| 03   | DeFi Lending Protocol             | Coming soon |
+| 04   | Decentralized Exchange (DEX)      | Coming soon |
+| 05   | DAO Governance System             | Coming soon |
+| 06   | Web3 + Frontend Integration       | Coming soon |
+| ...  | 📈 More Projects Coming Soon...   |           |
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
-Each project folder follows a consistent structure for clarity and scalability:
-
-
-
-/project-name 
-- │── contracts/ # Solidity smart contracts 
-- │── scripts/ # Deployment & automation scripts 
-- │── tests/ # Unit tests (Hardhat/Truffle) 
-- │── deployments/ # Contract addresses & deployments 
-- │── README.md # Project documentation
-
-
-
----
-
-## ⚙️ Tools & Frameworks
-
-| Tool         | Purpose                           |
-|--------------|------------------------------------|
-| 🔧 **Hardhat** / **Truffle** | Smart contract development & testing |
-| 🔒 **OpenZeppelin**         | Secure contract standards (ERCs)     |
-| 🌐 **Remix IDE**            | Lightweight in-browser development   |
-| 🔗 **Chainlink**            | Oracles for external data            |
-| 📡 **IPFS / Filecoin**      | Decentralized file storage           |
-
----
-
-## 📝 Weekly Progress
-
-Track my learning journey through weekly logs in [`docs/weekly-progress.md`](docs/weekly-progress.md).
-
----
-
-## 📬 Connect with Me
-
-- 🐦 **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
-- 💼 **LinkedIn**: [Your Name](https://linkedin.com/in/yourname)
-- 💻 **GitHub**: [@yourusername](https://github.com/yourusername)
-
----
-
-> 🚧 **Work in Progress** — This portfolio will grow every week. Stay tuned and follow the journey!
-
-
+Each project follows a consistent structure for clarity and scalability:
 
