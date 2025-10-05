@@ -1,0 +1,13 @@
+# Node / Hardhat
+node_modules/
+artifacts/
+cache/
+coverage/
+typechain/
+.env
+.env.*
+# Hardhat Ignition ephemeral build (keep addresses separately under deployments/)
+ignition/
+# OS/editor
+.DS_Store
+*.swp
