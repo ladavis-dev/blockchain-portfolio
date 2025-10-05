@@ -18,7 +18,7 @@ This is the first project in my **Blockchain Security Engineer Portfolio**, desi
 
 ## 📝 Contract
 File: [`projects/week01-solidity-token/contracts/HelloToken.sol`](projects/week01-solidity-token/contracts/HelloToken.sol)
-
+    
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
