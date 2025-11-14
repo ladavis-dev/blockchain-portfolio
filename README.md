@@ -1,82 +1,102 @@
-# 🧱 Blockchain Developer Portfolio
+🛡️ Blockchain Security Engineering Portfolio
 
-Welcome to my **Blockchain Developer Portfolio**, where I showcase weekly projects in **Smart Contracts**, **DeFi**, **NFTs**, and **Web3 DApps**. Each project is designed to highlight my progress, creativity, and deepening expertise in the blockchain space. 🚀
+Welcome to my Blockchain Security Engineering Portfolio, where I build, test, and audit smart contracts using Foundry, Solidity, and Rust-based tooling.
+Each week I ship a new project focused on secure smart contract engineering, DeFi mechanisms, attack surface exploration, and high-fidelity testing using Forge + Anvil.
 
----
+This portfolio reflects my commitment to mastering Ethereum security, reliability, and production-grade protocol development. ⚔️
 
-## 🧠 Skills & Technologies
+🧠 Core Skills & Technologies
 
-- 🔐 **Solidity** (ERC20, ERC721, ERC1155)
-- 🌉 **Web3 Integration** – Web3.js / Ethers.js
-- 💸 **DeFi Protocols** – Lending, Staking, Yield Farming
-- 🎨 **NFT DApps** – Marketplaces & Auctions
-- 🧬 **DAO Governance** – Voting & Treasury Systems
-- 🔄 **DEX Development** – Orderbook & Swap Interfaces
-- ☁️ **IPFS/Filecoin** – Decentralized Storage
-- 🔗 **Chainlink Oracles** – Real-World Data Integration
+🧱 Solidity (ERC20, ERC721, ERC1155, custom DeFi primitives)
 
----
+🛡️ Security Engineering — threat modeling, invariants, reentrancy prevention
 
-## 📆 Weekly Project Schedule
+🔍 Property-Based Testing — Foundry fuzzing + invariant tests
 
-I commit to uploading **1 new blockchain project every week**.
+🔬 Anvil — deterministic local chain for exploit simulation
 
-| Week | 🔨 Project Topic                        |
-|------|----------------------------------------|
-| 01   | Solidity Basics & Token Contracts      |
-| 02   | NFT Marketplace Smart Contracts        |
-| 03   | DeFi Lending Protocol                  |
-| 04   | Decentralized Exchange (DEX)           |
-| 05   | DAO Governance System                  |
-| 06   | Web3 + Frontend Integration            |
-| ...  | 📈 More Projects Coming Soon...        |
+🧪 Forge — unit tests, fuzzing, invariant frameworks
 
----
+🖥️ Cast — CLI contract interaction & inspection
 
-## 📁 Project Structure
+⚙️ Rust Tooling — ethers-rs, alloy-rs, and security utilities
 
-Each project folder follows a consistent structure for clarity and scalability:
+🔗 Chainlink — secure oracle integrations
 
+☁️ IPFS / Filecoin — decentralized storage
 
+🧬 DeFi Primitives — AMMs, staking, vaults, lending
 
-/project-name 
-- │── contracts/ # Solidity smart contracts 
-- │── scripts/ # Deployment & automation scripts 
-- │── tests/ # Unit tests (Hardhat/Truffle) 
-- │── deployments/ # Contract addresses & deployments 
-- │── README.md # Project documentation
+⚒️ Tools & Frameworks (Updated for Foundry)
+Tool / Framework	Purpose
+🛠️ Foundry (Forge / Cast / Anvil)	Smart contract dev, fuzzing, invariant testing, local chain
+🧪 Forge Std	Assertions, cheatcodes, utilities
+🌐 Anvil	High-performance local Ethereum node
+🔧 Cast	Call, broadcast, debug, inspect contracts from CLI
+🔒 OpenZeppelin Contracts	Secure ERC implementations
+🔗 Chainlink	Oracle & VRF integrations
+🖥️ Remix / VSCode	Solidity editing & debugging
+🦀 Rust (ethers-rs / alloy)	Secure backends & alternative dApp frontends
+📆 Weekly Project Schedule (Foundry-First)
 
+I publish one new Foundry-based blockchain security project every week.
 
+Week	🔨 Project Topic (Foundry-Based)
+01	Foundry Basics: Storage, Counter, Events, Reverts
+02	Allowlist Access Control + Custom Errors
+03	PiggyBank Vault + Secure Withdraw Patterns
+04	Foundry Fuzzing + Property-Based Tests
+05	ERC20 Token from Scratch + Attack Surface Tests
+06	ERC721 NFT + Permit + Defense Against Front-Running
+07	Flash Loan Simulator (Foundry + Anvil)
+08	Simple AMM (x*y=k) + Sandwich Attack Simulation
+09	Time-Locked Vault + Invariant Testing
+10	DAO Governance + Revert & Event Assertions
+...	🔐 Advanced Audit Simulations (Reentrancy, Oracle Attacks, etc.)
 
----
+💡 This roadmap emphasizes security, testing, fuzzing, exploit simulation, and correctness — the real core of blockchain security engineering.
 
-## ⚙️ Tools & Frameworks
+📁 Project Structure (Updated for Foundry)
 
-| Tool         | Purpose                           |
-|--------------|------------------------------------|
-| 🔧 **Hardhat** / **Truffle** | Smart contract development & testing |
-| 🔒 **OpenZeppelin**         | Secure contract standards (ERCs)     |
-| 🌐 **Remix IDE**            | Lightweight in-browser development   |
-| 🔗 **Chainlink**            | Oracles for external data            |
-| 📡 **IPFS / Filecoin**      | Decentralized file storage           |
+Each project follows a standardized Foundry layout:
 
----
+/project-name
+│── src/               # Solidity smart contracts
+│── test/              # Forge unit tests, fuzz tests, invariants
+│── script/            # Forge scripts (deployment, interactions)
+│── foundry.toml       # Compiler + remappings + test settings
+│── README.md          # Project documentation
 
-## 📝 Weekly Progress
+🧪 Testing Philosophy
 
-Track my learning journey through weekly logs in [`docs/weekly-progress.md`](docs/weekly-progress.md).
+My portfolio emphasizes:
 
----
+High-coverage unit testing
 
-## 📬 Connect with Me
+Fuzzing with Forge’s integrated fuzzer
 
-- 🐦 **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
-- 💼 **LinkedIn**: [Your Name](https://linkedin.com/in/yourname)
-- 💻 **GitHub**: [@yourusername](https://github.com/yourusername)
+Cheatcodes for powerful test scenarios (vm.prank, vm.deal, vm.warp, etc.)
 
----
+Invariant tests for protocol safety guarantees
 
-> 🚧 **Work in Progress** — This portfolio will grow every week. Stay tuned and follow the journey!
+Exploit simulation using Anvil forks (mainnet + testnet)
 
+This represents the modern standard for Ethereum protocol security.
 
+📝 Weekly Progress Log
 
+Track ongoing updates and technical reflections in
+docs/weekly-progress.md
+.
+
+📬 Connect With Me
+
+🐦 Twitter: @yourhandle
+
+💼 LinkedIn: Your Name
+
+💻 GitHub: @yourusername
+
+🔐 This portfolio is actively growing.
+Every week adds new smart contracts, test suites, attacks, defenses & writeups.
+Follow along as I build toward senior-level blockchain security engineering. 🛡️✨
