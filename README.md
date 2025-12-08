@@ -4,7 +4,7 @@
 
 ## 🎯 Portfolio Overview
 
-This repository demonstrates full-stack mastery of smart contract testing using Foundry. Each week builds progressively on core concepts, culminating in a production-ready testing workflow suitable for DeFi, NFT, and DAO systems.
+This repository demonstrates full-stack mastery of smart contract testing using Foundry—no JavaScript frameworks required. Each week builds progressively on core concepts, culminating in a production-ready testing workflow suitable for DeFi, NFT, and DAO systems.
 
 ## 📚 Learning Path
 
@@ -18,7 +18,6 @@ This repository demonstrates full-stack mastery of smart contract testing using 
 | 6 | Capstone: Integrated DEX | `MiniExchange.sol` | Fuzzing, forking, `vm.warp`, full integration |
 
 ## 🧱 The Testing Stack Hierarchy
-
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  Top Layer: forge-std/Test.sol + vm cheatcodes              │
@@ -33,11 +32,10 @@ This repository demonstrates full-stack mastery of smart contract testing using 
 ```
 
 ## 🚀 Quick Start
-
 ```bash
 # Clone this repository
-git clone https://gitlab.com/YOUR_USERNAME/foundry-testing-portfolio.git
-cd foundry-testing-portfolio
+git clone https://github.com/ladavis-dev/blockchain-portfolio.git
+cd blockchain-portfolio
 
 # Navigate to any week
 cd week-01-storage
@@ -59,9 +57,8 @@ forge test --gas-report
 - Git for version control
 
 ## 🏗️ Project Structure
-
 ```
-foundry-testing-portfolio/
+blockchain-portfolio/
 ├── README.md
 ├── week-01-storage/          # Forge basics + deployment
 ├── week-02-bank/             # Transactions & signers  
@@ -112,5 +109,3 @@ Blockchain Security Engineer
 ---
 
 *This portfolio was created as part of a structured learning path for smart contract security engineering.*
-
-
