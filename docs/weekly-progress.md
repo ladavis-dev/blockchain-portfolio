@@ -1,10 +1,10 @@
 # 🔐 Foundry Smart Contract Testing Portfolio
 
-> A comprehensive 6-week journey mastering Solidity contract testing with Foundry's unified stack (Forge + Anvil + Cast + forge-std).
+> A comprehensive journey mastering Solidity contract testing with Foundry's unified stack (Forge + Anvil + Cast + forge-std).
 
 ## 🎯 Portfolio Overview
 
-This repository demonstrates full-stack mastery of smart contract testing using Foundry—no JavaScript frameworks required. Each week builds progressively on core concepts, culminating in a production-ready testing workflow suitable for DeFi, NFT, and DAO systems.
+This repository demonstrates full-stack mastery of smart contract testing using Foundry. Each week builds progressively on core concepts, culminating in a production-ready testing workflow suitable for DeFi, NFT, and DAO systems.
 
 ## 📚 Learning Path
 
@@ -106,9 +106,10 @@ Each week contains:
 
 ## 👤 Author
 
-**[Your Name]**  
-Aspiring Blockchain Security Engineer
+**L.A. Davis**  
+Blockchain Security Engineer
 
 ---
 
 *This portfolio was created as part of a structured learning path for smart contract security engineering.*
+
