@@ -1,74 +1,116 @@
-🛡️ Blockchain Security Engineering Portfolio
+# 🔐 Foundry Smart Contract Testing Portfolio
 
-Welcome to my Blockchain Security Engineering Portfolio, where I showcase weekly projects in Smart Contracts, DeFi Security, Exploit Simulation, and High-Assurance Testing with Foundry.
-Each project is designed to highlight my progress, security mindset, and deepening expertise in Ethereum protocol engineering. ⚔️
+> A comprehensive journey mastering Solidity contract testing with Foundry's unified stack (Forge + Anvil + Cast + forge-std).
 
-🧠 Skills & Technologies
+## 🎯 Portfolio Overview
 
-🔐 Solidity (ERC20, ERC721, ERC1155, custom primitives)
+This repository demonstrates full-stack mastery of smart contract testing using Foundry. Each week builds progressively on core concepts, culminating in a production-ready testing workflow suitable for DeFi, NFT, and DAO systems.
 
-🧪 Foundry Suite – Forge (tests), Cast (CLI), Anvil (local chain)
+## 📚 Learning Path
 
-🔍 Security Testing – Fuzzing, invariants, fork testing
+| Week | Focus | Contract | Key Skills |
+|------|-------|----------|------------|
+| 1 | Forge Basics + Deployment | `Storage.sol` | `forge init`, `forge build`, `forge test`, `forge script`, `anvil` |
+| 2 | Transactions & Signers | `Bank.sol` | `vm.deal`, `vm.prank`, `cast send/call` |
+| 3 | Assertions & State Validation | `Counter.sol` | `forge-std/Test.sol` assertions |
+| 4 | Reverts & Events | `TimeLock.sol` | `vm.expectRevert`, `vm.expectEmit` |
+| 5 | Fixtures, Snapshots & Gas | `Voting.sol` | `setUp()`, `vm.snapshot/revertTo`, `--gas-report` |
+| 6 | Capstone: Integrated DEX | `MiniExchange.sol` | Fuzzing, forking, `vm.warp`, full integration |
 
-💸 DeFi Protocol Mechanics – AMMs, flash loans, staking, vaults
+## 🧱 The Testing Stack Hierarchy
 
-🎨 NFT Standards – Metadata, royalties, permit, marketplaces
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Top Layer: forge-std/Test.sol + vm cheatcodes              │
+│  → Assertions, events, reverts, time control                │
+├─────────────────────────────────────────────────────────────┤
+│  Middle Layer: Forge                                        │
+│  → Compiles, runs tests in native EVM, fuzzes inputs        │
+├─────────────────────────────────────────────────────────────┤
+│  Bottom Layer: Anvil                                        │
+│  → Local Ethereum node, forking, deterministic state        │
+└─────────────────────────────────────────────────────────────┘
+```
 
-🧬 DAO Governance – Proposal flow, voting, timelocks
+## 🚀 Quick Start
 
-🔄 MEV & DEX Simulation – Sandwich attacks, arbitrage, swap logic
+```bash
+# Clone this repository
+git clone https://gitlab.com/YOUR_USERNAME/foundry-testing-portfolio.git
+cd foundry-testing-portfolio
 
-☁️ IPFS/Filecoin – Decentralized storage
+# Navigate to any week
+cd week-01-storage
 
-🔗 Chainlink Oracles – Price feeds, VRF, automation
+# Install dependencies
+forge install
 
-📆 Weekly Project Schedule
+# Run tests
+forge test -vvv
 
-I commit to uploading 1 new Foundry-based security project every week.
+# Run with gas report
+forge test --gas-report
+```
 
-Week	🔨 Project Topic
-01	Foundry Basics: Storage, Counter, Events
-02	Allowlist Access Control + Custom Errors
-03	PiggyBank Vault (Secure Withdrawal Patterns)
-04	Fuzzing & Property-Based Testing
-05	ERC20 Token + Attack Surface Analysis
-06	ERC721 NFT + Permit + Anti-MEV Techniques
-07	Flash Loan Simulator (Anvil Fork Testing)
-08	Simple AMM + Sandwich Attack Simulation
-09	Time-Lock Vault + Invariant Testing
-10	DAO Governance System
-...	📈 More Projects Coming Soon...
-📁 Project Structure
+## 📋 Prerequisites
 
-Each project folder follows a consistent structure for clarity and scalability:
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) installed
+- Basic Solidity knowledge
+- Git for version control
 
-/project-name
-│── src/            # Solidity smart contracts
-│── test/           # Forge unit tests, fuzzing, invariants
-│── script/         # Deployment & automation scripts (Forge scripts)
-│── foundry.toml    # Compiler settings & remappings
-│── README.md       # Project documentation
+## 🏗️ Project Structure
 
-⚙️ Tools & Frameworks
-Tool	Purpose
-🛠️ Foundry (Forge / Cast / Anvil)	Smart contract development, testing, fuzzing, deployment
-🔒 OpenZeppelin Contracts	Secure ERC implementations
-🌐 Remix IDE	Lightweight Solidity debugging
-🔗 Chainlink	External data feeds (oracles)
-📡 IPFS / Filecoin	Decentralized storage
-📝 Weekly Progress
+```
+foundry-testing-portfolio/
+├── README.md
+├── week-01-storage/          # Forge basics + deployment
+├── week-02-bank/             # Transactions & signers  
+├── week-03-counter/          # Assertions & state validation
+├── week-04-timelock/         # Reverts & events
+├── week-05-voting/           # Fixtures, snapshots, gas
+└── week-06-miniexchange/     # Capstone DEX project
+```
 
-Track my learning journey through weekly logs in
-docs/weekly-progress.md
-.
+Each week contains:
+- `src/` - Smart contracts
+- `test/` - Comprehensive test suites
+- `script/` - Deployment scripts
+- `README.md` - Week-specific documentation
 
-📬 Connect with Me
+## 🧠 Study Pattern
 
-🐦 Twitter: @yourhandle
+| Day | Activity |
+|-----|----------|
+| Mon-Tue | Read Foundry Book sections (forge, anvil, cast) |
+| Wed-Thu | Build and test example contract |
+| Fri-Sat | Extend features (add reverts, events, fuzz inputs) |
+| Sun | Document findings + commit README updates |
 
-💼 LinkedIn: Your Name
+## 🎓 Skills Demonstrated
 
-💻 GitHub: @yourusername
+- ✅ Native Solidity testing without JavaScript frameworks
+- ✅ Forge compilation, testing, and scripting
+- ✅ Anvil local node management and forking
+- ✅ Cast command-line interactions
+- ✅ Comprehensive assertion patterns
+- ✅ Event and revert verification
+- ✅ Fuzz testing for edge cases
+- ✅ Gas optimization and reporting
+- ✅ Mainnet forking for real-world testing
 
-🚧 Work in Progress — This portfolio will grow every week. Stay tuned and follow the journey!
+## 📖 Resources
+
+- [Foundry Book](https://book.getfoundry.sh/)
+- [forge-std Reference](https://github.com/foundry-rs/forge-std)
+- [Cheatcodes Reference](https://book.getfoundry.sh/cheatcodes/)
+
+## 👤 Author
+
+**L.A. Davis**  
+Blockchain Security Engineer
+
+---
+
+*This portfolio was created as part of a structured learning path for smart contract security engineering.*
+
+
