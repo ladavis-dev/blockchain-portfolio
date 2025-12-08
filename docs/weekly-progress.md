@@ -1,359 +1,114 @@
-📅 Weekly Progress — Blockchain Security Engineering (Foundry)
+# 🔐 Foundry Smart Contract Testing Portfolio
 
-This document tracks my weekly progress as I build secure smart contracts, simulate attacks, design DeFi mechanisms, and strengthen my testing workflows using Foundry, Solidity, Anvil, and Cast.
+> A comprehensive 6-week journey mastering Solidity contract testing with Foundry's unified stack (Forge + Anvil + Cast + forge-std).
 
-Each week includes:
+## 🎯 Portfolio Overview
 
-🏗️ Project
+This repository demonstrates full-stack mastery of smart contract testing using Foundry—no JavaScript frameworks required. Each week builds progressively on core concepts, culminating in a production-ready testing workflow suitable for DeFi, NFT, and DAO systems.
 
-📘 Concepts learned
+## 📚 Learning Path
 
-🧪 Testing coverage
+| Week | Focus | Contract | Key Skills |
+|------|-------|----------|------------|
+| 1 | Forge Basics + Deployment | `Storage.sol` | `forge init`, `forge build`, `forge test`, `forge script`, `anvil` |
+| 2 | Transactions & Signers | `Bank.sol` | `vm.deal`, `vm.prank`, `cast send/call` |
+| 3 | Assertions & State Validation | `Counter.sol` | `forge-std/Test.sol` assertions |
+| 4 | Reverts & Events | `TimeLock.sol` | `vm.expectRevert`, `vm.expectEmit` |
+| 5 | Fixtures, Snapshots & Gas | `Voting.sol` | `setUp()`, `vm.snapshot/revertTo`, `--gas-report` |
+| 6 | Capstone: Integrated DEX | `MiniExchange.sol` | Fuzzing, forking, `vm.warp`, full integration |
 
-🛡️ Security lessons
+## 🧱 The Testing Stack Hierarchy
 
-🧰 Tools mastered
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Top Layer: forge-std/Test.sol + vm cheatcodes              │
+│  → Assertions, events, reverts, time control                │
+├─────────────────────────────────────────────────────────────┤
+│  Middle Layer: Forge                                        │
+│  → Compiles, runs tests in native EVM, fuzzes inputs        │
+├─────────────────────────────────────────────────────────────┤
+│  Bottom Layer: Anvil                                        │
+│  → Local Ethereum node, forking, deterministic state        │
+└─────────────────────────────────────────────────────────────┘
+```
 
-📝 Notes & reflections
+## 🚀 Quick Start
 
-Week 01 — Foundry Basics (Storage, Counter, Events, Reverts)
-🏗️ Project
+```bash
+# Clone this repository
+git clone https://gitlab.com/YOUR_USERNAME/foundry-testing-portfolio.git
+cd foundry-testing-portfolio
 
-SimpleStorage.sol
+# Navigate to any week
+cd week-01-storage
 
-Counter.sol (events + reverts)
+# Install dependencies
+forge install
 
-📘 Concepts Learned
+# Run tests
+forge test -vvv
 
-Foundry project structure (src/, test/, script/, foundry.toml)
-
-Difference between forge build and forge test
-
-Basic event testing with vm.expectEmit()
-
-Validating reverts with vm.expectRevert()
-
-🧪 Testing Coverage
-
-Unit tests for read/write functions
-
-Event emission tests
-
-Revert tests for invalid state transitions
-
-🛡️ Security Lessons
-
-Prefer custom errors over require strings (gas savings)
-
-Importance of validating state before mutation
-
-Visibility specifiers (external vs public) in secure design
-
-🧰 Tools Mastered
-
-forge test -vvv (verbose trace)
-
-cast for calling contracts
-
-anvil as local deterministic chain
-
-📝 Notes
-
-Great introduction to Foundry’s developer experience. Learned how cheatcodes replace 90% of what Hardhat plugins did.
-
-Week 02 — Allowlist Access Control + Custom Errors
-🏗️ Project
-
-Greeter.sol with allowlist-based permissioning
-
-📘 Concepts Learned
-
-Mapping-based allowlist design
-
-Using vm.prank() to simulate msg.sender
-
-Namespacing custom errors: Greeter.NotAllowed.selector
-
-🧪 Testing Coverage
-
-Access control tests
-
-State update tests
-
-Revert tests
-
-Event tests
-
-🛡️ Security Lessons
-
-Always pair access control with custom errors
-
-Avoid hardcoded owner addresses
-
-Prefer explicit allowlists over boolean flags
-
-🧰 Tools Mastered
-
-Deep dive into cheatcodes: vm.prank, vm.expectRevert
-
-Lint warnings: named imports, modifier wrapping
-
-📝 Notes
-
-Understanding access control patterns is critical—this week reinforced secure design choices for permissioned functions.
-
-Week 03 — PiggyBank Vault (Secure Withdrawal Patterns)
-🏗️ Project
-
-PiggyBank.sol — ETH vault with controlled withdraw logic
-
-📘 Concepts Learned
-
-Receive vs fallback functions
-
-Safe ETH sending patterns (avoid transfer)
-
-Handling custom withdrawal errors
-
-🧪 Testing Coverage
-
-Deposit tests
-
-Withdraw success path
-
-Expected reverts (wrong sender, insufficient balance)
-
-Fuzz testing deposit inputs
-
-🛡️ Security Lessons
-
-Using call{value: …} is the safest ETH transfer method
-
-Need to test revert paths involving fallback revert logic
-
-Withdrawals must be protected from reentrancy
-
-🧰 Tools Mastered
-
-forge test -vvvv for full trace debugging
-
-Understanding return/revert paths in verbose logs
-
-📝 Notes
-
-Foundry trace output helped identify a failing test caused by the test contract’s fallback behavior—a great debugging experience.
-
-Week 04 — Fuzzing & Property-Based Testing
-🏗️ Project
-
-Fuzz tests for arithmetic, vault logic, and access control patterns
-
-📘 Concepts Learned
-
-Writing fuzz tests (function testFuzz…(uint256 x))
-
-Constraining fuzz inputs
-
-Coverage of edge cases through randomness
-
-🧪 Testing Coverage
-
-Fuzzing setters
-
-Fuzzing ERC20-like transfer behavior
-
-Foundry’s automatic shrinking
-
-🛡️ Security Lessons
-
-Fuzzing exposes unexpected behavior quickly
-
-Edge-case centric design improves robustness
-
-Fuzz → invariants → formal verification pipeline
-
-🧰 Tools Mastered
-
-forge test --fuzz-runs <n>
-
-Fuzz logs + debugging unexpected panic codes
-
-📝 Notes
-
-Fuzzing feels like having a second engineer relentlessly trying to break your logic.
-
-Week 05 — ERC20 Token + Attack Surface Testing
-🏗️ Project
-
-Minimal ERC20 implementation
-
-Custom mint/burn logic
-
-📘 Concepts Learned
-
-ERC20 lifecycle
-
-Testing allowances, approvals, and transfers
-
-Common ERC20 vulnerabilities
-
-🧪 Testing Coverage
-
-Allowance inflation tests
-
-Transfer edge-case tests
-
-Fuzzed mint/burn flows
-
-🛡️ Security Lessons
-
-Approve/transferFrom requires careful design
-
-Token accounting must be exact
-
-Attackers often target allowance manipulation
-
-🧰 Tools Mastered
-
+# Run with gas report
 forge test --gas-report
-
-Profiling gas for token functions
-
-📝 Notes
-
-ERC20 tokens are simple but easy to get wrong—security requires precision.
-
-Week 06 — ERC721 + Permit + Anti-MEV Techniques
-🏗️ Project
-
-NFT with permit
-
-Anti-front-running mint design
-
-📘 Concepts Learned
-
-NFT metadata flow
-
-Signature-based authorization
-
-Basic MEV mitigation patterns
-
-🧪 Testing Coverage
-
-Signature validity tests
-
-Replay prevention
-
-Permit event testing
-
-🛡️ Security Lessons
-
-MEV is not an abstract threat—it's real
-
-Permit signatures reduce trust assumptions
-
-NFT mints require strict replay protection
-
-🧰 Tools Mastered
-
-ECDSA utilities
-
-vm.sign cheatcode
-
-📝 Notes
-
-Strong week for improving trust-minimized mint mechanics.
-
-Week 07 — Flash Loan Simulator (Anvil Fork Testing)
-🏗️ Project
-
-Recreated Aave-style flash loan vault
-
-Tested behavior on forked mainnet
-
-📘 Concepts Learned
-
-Fork testing with Anvil
-
-Simulating real-world liquidity pools
-
-Atomic loan execution
-
-🧪 Testing Coverage
-
-Fork-based invariants
-
-Liquidity checks
-
-Flash loan repayment validation
-
-🛡️ Security Lessons
-
-Flash loans reveal hidden assumptions
-
-Always assert the final state of liquidity
-
-🧰 Tools Mastered
-
-anvil --fork-url <RPC>
-
-Fork-state manipulation
-
-📝 Notes
-
-Fork testing brings realism—best way to validate protocol assumptions.
-
-Week 08 — Simple AMM + Sandwich Attack Simulation
-🏗️ Project
-
-Constant product AMM (x·y = k)
-
-Basic MEV attack reproduction
-
-📘 Concepts Learned
-
-Swap curves
-
-Slippage calculations
-
-Front-run / back-run modeling
-
-🧪 Testing Coverage
-
-Swap path tests
-
-MEV ordering simulations
-
-Price impact tests
-
-🛡️ Security Lessons
-
-AMMs require careful slippage design
-
-MEV is inevitable—design to reduce harm
-
-🧰 Tools Mastered
-
-Block manipulation via vm.roll
-
-Simulation of attacker + victim flows
-
-📝 Notes
-
-Understanding AMMs at the test level helps grasp modern DEX design.
-
-Future Weeks
-
-Time-lock vaults
-
-DAO governance
-
-Oracle manipulation
-
-Reentrancy simulations
-
-On-chain randomness abuse
-
-Multisig wallet design
-
-Cross-chain bridging fundamentals
+```
+
+## 📋 Prerequisites
+
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) installed
+- Basic Solidity knowledge
+- Git for version control
+
+## 🏗️ Project Structure
+
+```
+foundry-testing-portfolio/
+├── README.md
+├── week-01-storage/          # Forge basics + deployment
+├── week-02-bank/             # Transactions & signers  
+├── week-03-counter/          # Assertions & state validation
+├── week-04-timelock/         # Reverts & events
+├── week-05-voting/           # Fixtures, snapshots, gas
+└── week-06-miniexchange/     # Capstone DEX project
+```
+
+Each week contains:
+- `src/` - Smart contracts
+- `test/` - Comprehensive test suites
+- `script/` - Deployment scripts
+- `README.md` - Week-specific documentation
+
+## 🧠 Study Pattern
+
+| Day | Activity |
+|-----|----------|
+| Mon-Tue | Read Foundry Book sections (forge, anvil, cast) |
+| Wed-Thu | Build and test example contract |
+| Fri-Sat | Extend features (add reverts, events, fuzz inputs) |
+| Sun | Document findings + commit README updates |
+
+## 🎓 Skills Demonstrated
+
+- ✅ Native Solidity testing without JavaScript frameworks
+- ✅ Forge compilation, testing, and scripting
+- ✅ Anvil local node management and forking
+- ✅ Cast command-line interactions
+- ✅ Comprehensive assertion patterns
+- ✅ Event and revert verification
+- ✅ Fuzz testing for edge cases
+- ✅ Gas optimization and reporting
+- ✅ Mainnet forking for real-world testing
+
+## 📖 Resources
+
+- [Foundry Book](https://book.getfoundry.sh/)
+- [forge-std Reference](https://github.com/foundry-rs/forge-std)
+- [Cheatcodes Reference](https://book.getfoundry.sh/cheatcodes/)
+
+## 👤 Author
+
+**[Your Name]**  
+Aspiring Blockchain Security Engineer
+
+---
+
+*This portfolio was created as part of a structured learning path for smart contract security engineering.*
