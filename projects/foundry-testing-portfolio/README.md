@@ -106,8 +106,8 @@ Each week contains:
 
 ## 👤 Author
 
-**[Your Name]**  
-Aspiring Blockchain Security Engineer
+**L.A. Davis**  
+Blockchain Security Engineer
 
 ---
 
