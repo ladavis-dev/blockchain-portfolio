@@ -1,0 +1,8 @@
+# Foundry artifacts (DO NOT COMMIT)
+broadcast/
+cache/
+out/
+
+# OS junk
+.DS_Store
+
