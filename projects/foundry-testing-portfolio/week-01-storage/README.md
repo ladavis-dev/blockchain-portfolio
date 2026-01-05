@@ -7,7 +7,7 @@
 - Write and compile basic Solidity contracts
 - Create and run deployment scripts
 - Use `setUp()` as a test fixture
-- Debug with `console2.log()`
+
 
 ## 📚 Concepts Covered
 
@@ -60,11 +60,10 @@ A simple contract demonstrating:
 
 | Test | Description |
 |------|-------------|
-| `testInitialValue` | Verify default state |
+| `testInitialValueIsZero` | Verify default state |
 | `testStore` | Basic store and retrieve |
 | `testStoreEmitsEvent` | Event emission on store |
 | `testMultipleStores` | Sequential state changes |
-| `testConsoleLogging` | Debug output with console2 |
 
 ## 📝 Key Learnings
 
@@ -105,15 +104,53 @@ forge test -vvv
 anvil
 
 # Deploy to local node
-forge script script/Storage.s.sol --rpc-url http://localhost:8545 --broadcast --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+forge script script/Storage.s.sol --rpc-url http://localhost:8545 --broadcast --private-key <ANVIL_PRIVATE_KEY>
 ```
+
+## 🔍 Key Behaviors & Edge Cases
+
+This contract intentionally validates failure modes and boundary conditions to demonstrate defensive smart contract design and test-driven development using Foundry.
+
+### Key behaviors verified
+- Owner-only access is enforced for privileged functions
+- All state mutations emit events for off-chain indexing and monitoring
+- Increment and decrement operations update state deterministically
+
+### Edge cases handled and tested
+- Reverts when attempting to store an identical value
+- Prevents arithmetic underflow when decrementing at zero
+- Prevents ownership transfer to the zero address
+- Enforces access control using custom Solidity errors (not string reverts)
+
+All behaviors above are validated through automated Foundry tests using `expectRevert`, `expectEmit`, and execution traces.
+
+
 
 ## ✅ Checklist
 
-- [ ] Initialized Foundry project
-- [ ] Wrote Storage.sol with store/retrieve functions
-- [ ] Created comprehensive test suite
-- [ ] Used console2.log for debugging
-- [ ] Created deployment script
-- [ ] Deployed to local Anvil node
-- [ ] All tests passing
+### Project Setup
+- [x] Initialized Foundry project
+- [x] Configured foundry.toml
+- [x] Installed forge-std
+
+### Contract Development
+- [x] Wrote Storage.sol with store/retrieve logic
+- [x] Implemented owner-only access control
+- [x] Added custom errors and events
+- [x] Handled edge cases (same value, underflow, zero address)
+
+### Testing
+- [x] Created comprehensive test suite (16 tests)
+- [x] Validated revert conditions with expectRevert
+- [x] Verified event emission with expectEmit
+- [x] Used console2.log for debugging
+- [x] All tests passing via `forge test`
+
+### Deployment & Execution
+- [x] Created deployment script
+- [x] Deployed to local Anvil node
+
+### Evidence & Documentation
+- [x] Captured forge test output screenshots
+- [x] Documented key behaviors and edge cases
+- [x] Organized visual artifacts under screenshots/
