@@ -8,6 +8,8 @@
 - Optimize gas consumption
 - Create modular test helpers
 
+---
+
 ## 📚 Concepts Covered
 
 ### Snapshot & Revert
@@ -42,26 +44,26 @@ contract VotingTest is Test {
     // Shared state
     Voting public voting;
     address[] public voters;
-    
+
     // Base setup
     function setUp() public {
         voting = new Voting();
         _createVoters(10);
     }
-    
+
     // Reusable helper
     function _createVoters(uint256 count) internal {
         for (uint256 i = 0; i < count; i++) {
             voters.push(makeAddr(string(abi.encodePacked("voter", i))));
         }
     }
-    
+
     // Fixture modifier
     modifier withProposal() {
         voting.createProposal("Test Proposal");
         _;
     }
-    
+
     // Use fixture
     function testVote() public withProposal {
         voting.vote(0, true);
@@ -69,24 +71,64 @@ contract VotingTest is Test {
 }
 ```
 
+---
+
 ## 🔧 Contract: Voting.sol
 
 A governance voting system demonstrating:
+
 - Proposal creation and management
 - Vote delegation
 - Quorum requirements
 - Voting periods with time constraints
 - Vote weight calculations
+- Batch voter registration (gas optimized)
+- Admin-controlled configuration
 
-## 🧪 Tests Demonstrated
+---
+
+## 🧪 Tests Executed
+
+### Fixture & Setup Tests
 
 | Test | Technique | Purpose |
 |------|-----------|---------|
-| `testCreateProposal` | Base `setUp` | Fixture usage |
-| `testMultipleScenarios` | `vm.snapshot` | State branching |
-| `testGasOptimization` | `--gas-report` | Gas measurement |
-| `testDelegation` | Helper functions | Complex setup |
-| `testQuorum` | Snapshot revert | Reset between tests |
+| `testSetupFixture` | `setUp()` | Verify base fixture correctness |
+| `testCreateProposal` | Helper function | Proposal creation via fixture |
+
+### Snapshot Tests
+
+| Test | Description |
+|------|-------------|
+| `testVotingOutcomesWithSnapshots` | Branch into 3 scenarios (all yes / all no / split) from single snapshot |
+| `testMultipleProposalsWithSnapshots` | Create proposals, revert, verify state rollback |
+
+### Gas Optimization Tests
+
+| Test | Description |
+|------|-------------|
+| `testGasBatchVsSingleRegistration` | Compare batch vs loop registration gas |
+| `testGasVoting` | Measure single vote gas consumption |
+| `testGasAllVotersVoting` | Track per-voter gas across all voters |
+| `testGasProposalCreation` | Benchmark proposal creation |
+| `testGasVote` | Benchmark vote casting |
+| `testGasBatchRegistration` | Benchmark batch registration (20 voters) |
+
+### Complex Scenario Tests
+
+| Test | Description |
+|------|-------------|
+| `testProposalLifecycle` | Full lifecycle: create → vote → time warp → execute |
+| `testQuorumScenarios` | Below quorum fails, above quorum passes (via snapshots) |
+| `testDelegation` | Voter delegation mechanics |
+
+### Event Tests
+
+| Test | Description |
+|------|-------------|
+| `testEventsEmitted` | ProposalCreated and VoteCast event verification |
+
+---
 
 ## 📝 Key Learnings
 
@@ -94,17 +136,16 @@ A governance voting system demonstrating:
 
 ```solidity
 contract BaseTest is Test {
-    // Common state
     Voting voting;
     address admin;
     address[] voters;
-    
+
     function setUp() public virtual {
         admin = makeAddr("admin");
         voting = new Voting(admin);
         _setupVoters();
     }
-    
+
     function _setupVoters() internal {
         for (uint i = 0; i < 5; i++) {
             voters.push(makeAddr(string.concat("voter", vm.toString(i))));
@@ -116,7 +157,7 @@ contract BaseTest is Test {
 // Inherit and extend
 contract ProposalTest is BaseTest {
     uint256 proposalId;
-    
+
     function setUp() public override {
         super.setUp();
         proposalId = _createTestProposal();
@@ -129,17 +170,17 @@ contract ProposalTest is BaseTest {
 ```solidity
 function testVotingScenarios() public {
     voting.createProposal("Proposal 1");
-    
+
     // Take snapshot before voting
     uint256 beforeVoting = vm.snapshot();
-    
+
     // Scenario 1: All vote yes
     _everyoneVotesYes();
     assertTrue(voting.isPassed(0));
-    
+
     // Revert and try different scenario
     vm.revertTo(beforeVoting);
-    
+
     // Scenario 2: All vote no
     _everyoneVotesNo();
     assertFalse(voting.isPassed(0));
@@ -150,19 +191,16 @@ function testVotingScenarios() public {
 
 ```solidity
 function testGasComparison() public {
-    // Method 1
     uint256 gasBefore = gasleft();
     voting.voteBasic(0, true);
     uint256 gasMethod1 = gasBefore - gasleft();
-    
-    // Reset
+
     vm.revertTo(snapshot);
-    
-    // Method 2
+
     gasBefore = gasleft();
     voting.voteOptimized(0, true);
     uint256 gasMethod2 = gasBefore - gasleft();
-    
+
     console2.log("Basic:", gasMethod1);
     console2.log("Optimized:", gasMethod2);
     assertLt(gasMethod2, gasMethod1);
@@ -172,7 +210,6 @@ function testGasComparison() public {
 ### 4. Modular Test Helpers
 
 ```solidity
-// In test file
 function _registerAllVoters() internal {
     for (uint i = 0; i < voters.length; i++) {
         vm.prank(admin);
@@ -188,6 +225,8 @@ function _submitVotes(bool[] memory votes) internal {
 }
 ```
 
+---
+
 ## 🚀 Running This Week's Project
 
 ```bash
@@ -200,7 +239,7 @@ forge build
 forge test --gas-report
 
 # Run tests with detailed gas per test
-forge test -vvv --gas-report
+forge test -vv --gas-report
 
 # Run specific test with gas focus
 forge test --match-test testGas --gas-report
@@ -212,12 +251,24 @@ forge snapshot
 forge snapshot --check
 ```
 
+---
+
 ## ✅ Checklist
 
-- [ ] Implemented Voting.sol with governance logic
-- [ ] Created reusable test fixtures
-- [ ] Used vm.snapshot for state management
-- [ ] Generated and analyzed gas reports
-- [ ] Created helper functions for complex setups
-- [ ] Tested edge cases with snapshots
-- [ ] All tests passing with optimal gas
+- [x] Implemented Voting.sol with governance logic
+- [x] Created reusable test fixtures and helpers
+- [x] Used vm.snapshot for state management
+- [x] Generated and analyzed gas reports
+- [x] Compared batch vs single registration gas
+- [x] Tested quorum scenarios with snapshots
+- [x] Full proposal lifecycle tested
+- [x] Event verification
+- [x] On-chain deployment via Anvil
+- [x] All tests passing
+
+---
+
+## 🔜 Next Week Preview
+
+**Week 6: Capstone — MiniExchange (Integrated DEX)**  
+Full integration of all testing concepts: fuzzing, invariants, forking, and gas analysis on a constant product AMM.
