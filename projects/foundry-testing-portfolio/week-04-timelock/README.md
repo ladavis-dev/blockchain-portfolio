@@ -8,6 +8,8 @@
 - Test time-dependent contract logic
 - Handle indexed vs non-indexed event parameters
 
+---
+
 ## 📚 Concepts Covered
 
 ### Revert Testing
@@ -27,8 +29,8 @@ failingFunction();
 
 // Expect custom error with arguments
 vm.expectRevert(abi.encodeWithSelector(
-    CustomError.selector, 
-    arg1, 
+    CustomError.selector,
+    arg1,
     arg2
 ));
 failingFunction();
@@ -77,26 +79,74 @@ vm.roll(1000000);
 vm.roll(block.number + 100);
 ```
 
+---
+
 ## 🔧 Contract: TimeLock.sol
 
-A time-locked vault demonstrating:
-- Lock periods for deposits
-- Time-based withdrawals
-- Emergency unlock mechanisms
-- Event emission for all actions
-- Complex revert conditions
+A time-locked vault demonstrating **secure time-based access control**.
 
-## 🧪 Tests Demonstrated
+### Features Implemented
 
-| Test | Cheatcode | Purpose |
-|------|-----------|---------|
-| `testDepositEmitsEvent` | `vm.expectEmit` | Verify event structure |
-| `testCannotWithdrawBeforeUnlock` | `vm.expectRevert` | Time-based revert |
-| `testWithdrawAfterUnlock` | `vm.warp` | Time advancement |
-| `testMultipleIndexedEvents` | `vm.expectEmit` | Multiple topics |
-| `testCustomErrorWithArgs` | `vm.expectRevert` | Error arguments |
+- Lock periods for deposits with configurable duration
+- Time-based withdrawals with strict unlock enforcement
+- Emergency withdrawal with 10% penalty
+- Pausable contract functionality
+- Comprehensive event emission for all state changes
+- Custom errors with descriptive arguments
+- Configurable lock duration bounds (owner-only)
 
-## 📝 Key Learnings
+---
+
+## 🧪 Tests Executed
+
+### Event Verification Tests
+
+| Test | Description |
+|------|-------------|
+| `testDepositEmitsEvent` | Full event parameter verification |
+| `testDepositEventIndexedOnly` | Indexed-only topic checking |
+| `testWithdrawEmitsEvent` | Withdrawal event after unlock |
+| `testEmergencyWithdrawEmitsEvent` | Penalty + payout event data |
+| `testMultipleDepositsEmitEvents` | Sequential event ordering |
+| `testBoundsUpdateEmitsEvent` | Admin config change event |
+| `testOwnershipTransferEmitsEvent` | Ownership transfer event |
+
+### Revert Tests (Custom Errors)
+
+| Test | Error Tested | Security Focus |
+|------|--------------|----------------|
+| `testCannotDepositBelowMinimum` | `InsufficientDeposit` | Input validation |
+| `testCannotDepositWithTooShortLock` | `InvalidLockDuration` | Bounds enforcement |
+| `testCannotDepositWithTooLongLock` | `InvalidLockDuration` | Bounds enforcement |
+| `testCannotWithdrawBeforeUnlock` | `StillLocked` | Time-based access |
+| `testCannotWithdrawNonexistentLock` | `LockNotFound` | Invalid state |
+| `testCannotWithdrawTwice` | `AlreadyWithdrawn` | Double-spend prevention |
+| `testNonOwnerCannotUpdateBounds` | `NotOwner` | Authorization |
+| `testCannotDepositWhenPaused` | `ContractPaused` | Circuit breaker |
+| `testCannotTransferOwnershipToZero` | `ZeroAddress` | Zero-address guard |
+| `testCannotSetInvalidBounds` | `InvalidBounds` | Config validation |
+
+### Time Manipulation Tests
+
+| Test | Description |
+|------|-------------|
+| `testWithdrawAfterUnlock` | Successful withdrawal after `vm.warp` |
+| `testWithdrawAtExactUnlockTime` | Boundary: withdraw at exact unlock |
+| `testCannotWithdrawOneSecondEarly` | Boundary: one second before unlock |
+| `testTimeRemaining` | Countdown calculation accuracy |
+| `testIsWithdrawableStatus` | Boolean status across time |
+| `testBlockNumberManipulation` | `vm.roll` block advancement |
+
+### Integration Tests
+
+| Test | Description |
+|------|-------------|
+| `testFullLifecycleMultipleLocks` | Multiple locks with staggered unlocks |
+| `testEmergencyWithdrawPenalty` | 10% penalty calculation verification |
+
+---
+
+## 🧠 Key Learnings
 
 ### 1. Understanding vm.expectEmit
 
@@ -119,59 +169,71 @@ contract.transfer(alice, bob, 100);
 ```solidity
 function testUnlockAfterDelay() public {
     uint256 lockDuration = 7 days;
-    
+
     // Deposit with lock
     vault.deposit{value: 1 ether}(lockDuration);
-    
-    // Try to withdraw immediately - should fail
+
+    // Try to withdraw immediately — should fail
     vm.expectRevert(TimeLock.StillLocked.selector);
-    vault.withdraw();
-    
+    vault.withdraw(0);
+
     // Advance time past lock period
     vm.warp(block.timestamp + lockDuration + 1);
-    
+
     // Now withdrawal should succeed
-    vault.withdraw();
+    vault.withdraw(0);
 }
 ```
 
-### 3. Testing Multiple Events
+### 3. Boundary Testing Is Critical
 
 ```solidity
-function testMultipleEvents() public {
-    // Expect events in order
-    vm.expectEmit(true, true, false, true);
-    emit Event1(param1, param2, data1);
-    
-    vm.expectEmit(true, false, false, true);
-    emit Event2(param1, data2);
-    
-    // This call emits both events
-    contract.functionThatEmitsTwoEvents();
-}
+// Exact unlock time — should succeed
+vm.warp(block.timestamp + lockDuration);
+vault.withdraw(0); // passes
+
+// One second early — should fail
+vm.warp(unlockTime - 1);
+vm.expectRevert(...);
+vault.withdraw(0); // reverts
 ```
 
-### 4. Common Revert Patterns
+Off-by-one errors in time logic are a common audit finding.
+
+### 4. Custom Errors with Arguments
 
 ```solidity
-// String revert
-vm.expectRevert("Only owner");
-
-// Custom error without args
-vm.expectRevert(Unauthorized.selector);
-
-// Custom error with args
-vm.expectRevert(abi.encodeWithSelector(
-    InsufficientBalance.selector,
-    requested,
-    available
-));
-
-// Panic codes
-vm.expectRevert(stdError.arithmeticError);  // overflow/underflow
-vm.expectRevert(stdError.divisionError);    // division by zero
-vm.expectRevert(stdError.assertionError);   // assert() failure
+// Verify the exact error data including parameters
+vm.expectRevert(
+    abi.encodeWithSelector(
+        TimeLock.StillLocked.selector,
+        currentTime,    // what time it is now
+        unlockTime      // when unlock happens
+    )
+);
 ```
+
+Testing error arguments ensures contracts communicate failures clearly.
+
+---
+
+## 🔗 On-Chain Execution (Anvil)
+
+### Start Local Chain
+
+```bash
+anvil
+```
+
+### Deploy
+
+```bash
+forge script script/TimeLock.s.sol \
+  --rpc-url http://localhost:8545 \
+  --broadcast
+```
+
+---
 
 ## 🚀 Running This Week's Project
 
@@ -182,24 +244,39 @@ cd week-04-timelock
 forge build
 
 # Run all tests
-forge test -vvv
+forge test -vv
 
 # Run revert tests only
-forge test --match-test "testCannot" -vvv
+forge test --match-test "testCannot" -vv
 
-# Run event tests only  
-forge test --match-test "Emit" -vvv
+# Run event tests only
+forge test --match-test "Emit" -vv
 
 # Run time-based tests
-forge test --match-test "Lock" -vvv
+forge test --match-test "Lock" -vv
+
+# Gas profiling
+forge test --gas-report
 ```
+
+---
 
 ## ✅ Checklist
 
-- [ ] Implemented TimeLock.sol with lock periods
-- [ ] Tested all custom error types
-- [ ] Used vm.expectEmit for event verification
-- [ ] Tested indexed vs non-indexed parameters
-- [ ] Used vm.warp for time manipulation
-- [ ] Tested edge cases around lock boundaries
-- [ ] All tests passing
+- [x] Implemented TimeLock.sol with lock periods
+- [x] Tested all custom error types with arguments
+- [x] Used vm.expectEmit for event verification
+- [x] Tested indexed vs non-indexed parameters
+- [x] Used vm.warp for time manipulation
+- [x] Tested edge cases around lock boundaries
+- [x] Emergency withdrawal with penalty logic
+- [x] Pause/unpause functionality tested
+- [x] On-chain deployment via Anvil
+- [x] All tests passing
+
+---
+
+## 🔜 Next Week Preview
+
+**Week 5: Fixtures, Snapshots & Gas**  
+Advanced test organization with `vm.snapshot`, `vm.revertTo`, and gas optimization analysis.

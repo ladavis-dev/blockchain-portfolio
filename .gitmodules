@@ -6,3 +6,6 @@
 	path = projects/foundry-testing-portfolio/week-02-bank/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
 
+[submodule "projects/foundry-testing-portfolio/week-04-timelock/lib/forge-std"]
+	path = projects/foundry-testing-portfolio/week-04-timelock/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
