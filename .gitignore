@@ -16,3 +16,4 @@
 .vscode/
 .idea/
 
+!**/lib/forge-std/
