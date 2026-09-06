@@ -24,3 +24,9 @@
 [submodule "projects/foundry-testing-portfolio/exploits/reentrancy-deep-dive/lib/forge-std"]
 	path = projects/foundry-testing-portfolio/exploits/reentrancy-deep-dive/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "projects/foundry-testing-portfolio/exploits/flash-loan-manipulation/lib/forge-std"]
+	path = projects/foundry-testing-portfolio/exploits/flash-loan-manipulation/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "projects/foundry-testing-portfolio/exploits/storage-collision/lib/forge-std"]
+	path = projects/foundry-testing-portfolio/exploits/storage-collision/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
