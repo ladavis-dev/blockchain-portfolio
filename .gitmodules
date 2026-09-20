@@ -30,3 +30,6 @@
 [submodule "projects/foundry-testing-portfolio/exploits/storage-collision/lib/forge-std"]
 	path = projects/foundry-testing-portfolio/exploits/storage-collision/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "projects/foundry-testing-portfolio/exploits/signature-replay/lib/forge-std"]
+	path = projects/foundry-testing-portfolio/exploits/signature-replay/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
